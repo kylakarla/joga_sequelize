@@ -1,12 +1,12 @@
-import express, { json } from 'express';
-import { config } from 'dotenv';
+const express = require('express');
+const dotenv = require('dotenv');
 const app = express();
 
 // Middleware to parse JSON bodies
-app.use(json());
+app.use(express.json());
 
-config();
-import Sequelize from 'sequelize';
+dotenv.config();
+const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DRIVER
