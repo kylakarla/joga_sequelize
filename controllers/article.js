@@ -17,6 +17,17 @@ exports.getAllArticles = async (req, res) => {
         res.status(500).json({ error: 'Andmete laadimine ebaõnnestus.' });
     }
 };
+exports.getArticleBySlug = async (req, res) => {
+    try {
+        const article = await Article.findOne({ where: { slug: req.params.slug } });
+        if (!article) {
+            return res.status(404).json({ error: 'Artiklit ei leitud.' });
+        }
+        res.json(article);
+    } catch (error) {
+        res.status(500).json({ error: 'Andmete laadimine ebaõnnestus.' });
+    }
+};
 
 // Hangi üks artikkel ID järgi
 exports.getArticleById = async (req, res) => {
