@@ -9,7 +9,8 @@ async up (queryInterface, Sequelize) {
       slug: 'introduction-to-ashtanga',
       image: 'ashtanga.jpg',
       body: 'Ashtanga yoga is a dynamic and physically demanding practice that synchronizes breath with movement.',
-      published: '2020-01-15 15:30:00',
+      author_id: 1,
+      published: new Date('2020-01-15T15:30:00'),
       updatedAt: new Date(),
       createdAt: new Date()
     },
@@ -18,7 +19,8 @@ async up (queryInterface, Sequelize) {
       slug: 'the-benefits-of-meditation',
       image: 'meditation.jpg',
       body: 'Meditation offers numerous benefits including reduced stress, improved concentration, and enhanced emotional health.',
-      published: '2020-02-20 10:00:00',
+      author_id: 2,
+      published: new Date('2020-02-20T10:00:00'),
       updatedAt: new Date(),
       createdAt: new Date()
     },
@@ -27,7 +29,8 @@ async up (queryInterface, Sequelize) {
       slug: 'yoga-for-beginners',
       image: 'yoga_beginners.jpg',
       body: 'Starting yoga can be intimidating, but with the right guidance, beginners can quickly find their flow and enjoy the practice.',
-      published: '2020-03-10 09:00:00',
+      author_id: 1,
+      published: new Date('2020-03-10T09:00:00'),
       updatedAt: new Date(),
       createdAt: new Date()
     }
