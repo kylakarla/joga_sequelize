@@ -25,6 +25,8 @@ sequelize.authenticate()
 app.get('/', (req, res) => {
   res.json({message: 'Welcome to sequelize app'});
 });
+const articleRouter = require('./routes/article.js');
+app.use('/articles', articleRouter);
 
 // Start the server
 app.listen(3026, () => {
