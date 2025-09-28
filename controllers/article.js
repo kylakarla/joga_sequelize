@@ -4,12 +4,13 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   host: process.env.DB_HOST,
   dialect: process.env.DB_DRIVER
 });
+const Author = require('../models/author')(sequelize, DataTypes);
 
 // Article mudeli importimine
 const Article = require('../models/article')(sequelize, DataTypes);
-
+class articleController {
 // Hangi kõik artiklid
-exports.getAllArticles = async (req, res) => {
+getAllArticles = async (req, res) => {
     try {
         const articles = await Article.findAll();
         res.json(articles);
@@ -17,9 +18,9 @@ exports.getAllArticles = async (req, res) => {
         res.status(500).json({ error: 'Andmete laadimine ebaõnnestus.' });
     }
 };
-exports.getArticleBySlug = async (req, res) => {
+getArticleBySlug = async (req, res) => {
     try {
-        const article = await Article.findOne({ where: { slug: req.params.slug } });
+        const article = await Article.findOne({ where: { slug: req.params.slug }, include: 'author' });
         if (!article) {
             return res.status(404).json({ error: 'Artiklit ei leitud.' });
         }
@@ -30,7 +31,7 @@ exports.getArticleBySlug = async (req, res) => {
 };
 
 // Hangi üks artikkel ID järgi
-exports.getArticleById = async (req, res) => {
+getArticleById = async (req, res) => {
     try {
         const article = await Article.findByPk(req.params.id);
         if (!article) {
@@ -41,3 +42,5 @@ exports.getArticleById = async (req, res) => {
         res.status(500).json({ error: 'Andmete laadimine ebaõnnestus.' });
     }
 };
+}
+module.exports = new articleController();
