@@ -20,7 +20,12 @@ getAllArticles = async (req, res) => {
 };
 getArticleBySlug = async (req, res) => {
     try {
-        const article = await Article.findOne({ where: { slug: req.params.slug }, include: 'author' });
+        const article = await Article.findOne({ where: { slug: req.params.slug }, 
+            include: [
+                    'Author',
+                    'Tags'
+                    ]  
+            });
         if (!article) {
             return res.status(404).json({ error: 'Artiklit ei leitud.' });
         }
