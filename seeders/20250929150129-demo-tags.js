@@ -1,59 +1,21 @@
 'use strict';
 
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'yogapractice',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
-     await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'yogainspiration',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
-     await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'wellness',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
-     await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'nature',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
-     await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'spirituality',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
-     await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'sport',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
-     await queryInterface.bulkInsert('Tags', [
-     {
-       name: 'yogateacher',
-       createdAt: new Date(),
-       updatedAt: new Date()
-     }], {});
+    // Üks bulkInsert kõigi tagidega korraga
+    return queryInterface.bulkInsert('Tags', [
+      { id: 1, name: 'yogapractice', createdAt: new Date(), updatedAt: new Date() },
+      { id: 2, name: 'yogainspiration', createdAt: new Date(), updatedAt: new Date() },
+      { id: 3, name: 'wellness', createdAt: new Date(), updatedAt: new Date() },
+      { id: 4, name: 'nature', createdAt: new Date(), updatedAt: new Date() },
+      { id: 5, name: 'spirituality', createdAt: new Date(), updatedAt: new Date() },
+      { id: 6, name: 'sport', createdAt: new Date(), updatedAt: new Date() },
+      { id: 7, name: 'yogateacher', createdAt: new Date(), updatedAt: new Date() }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    return queryInterface.bulkDelete('Tags', null, {});
   }
 };
