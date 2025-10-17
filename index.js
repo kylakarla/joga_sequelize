@@ -28,6 +28,9 @@ app.get('/', (req, res) => {
 const articleRouter = require('./routes/article.js');
 app.use('/articles', articleRouter);
 
+const adminRoutes = require('./routes/admin');
+app.use('/admin', adminRoutes);
+
 // Start the server
 app.listen(3026, () => {
   console.log('Server is running at http://localhost:3026');
